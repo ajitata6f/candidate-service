@@ -1,0 +1,27 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost/candidate_reg
+    username: postgres
+    password: 12345
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: true
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    port: 15672
+    exchange: x.ssce-int-direct-exchange
+    queue: q.ssce-int-queue
+    routingkey: ssce_int
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 3s
+          max-attempts: 6
+          max-interval: 10s
+          multiplier: 2
+
